@@ -1,0 +1,212 @@
+.orange-container {
+    background-color: #FBBC04;
+    padding: 20px;
+    margin: 0 20px; /* Margem nos lados */
+    display: flex;
+    
+  }
+
+  .image-menina {
+    width: 300px;
+    height: auto;
+    margin-top: 40px; /* Ajusta a posição vertical */
+    margin-left: 30%; /* Ajusta a posição horizontal */
+    margin-right: 100px;
+  
+  }
+
+  .space-above {
+    margin-top: 60px; /* Aumenta o espaçamento acima dos textos */
+    padding-left: 100px;
+  }
+  
+
+  .pattaya-text {
+    font-family: Pattaya;
+    color: white;
+    font-size: 55px;
+  }
+
+  .montserrat-text {
+    font-family: 'Montserrat', sans-serif; /* Usando Montserrat como fonte */
+    color: rgb(0, 0, 0); /* Definindo a cor do texto como preto */
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  /* BOLAS */
+
+  .colorful-background {
+    background-image: url('../Ecommerce/img/back-ball.png'); /* URL da sua imagem de bolas */
+    background-size: 75%;
+    padding: 20px;
+    margin: 0 20px; /* Margem nos lados */
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 128vh;
+    z-index: 1;
+    
+  }
+
+  .overlay-content {
+    position: absolute; /* Define a posição absoluta para que os elementos fiquem sobrepostos à imagem */
+    top: 100%; /* Define a posição verticalmente central */
+    left: 50%; /* Define a posição horizontalmente central */
+    transform: translate(-50%, -50%); /* Move o conteúdo para o centro */
+    text-align: center; /* Alinha o texto ao centro */
+  }
+
+
+  .overlay-title-righteous {
+    font-family: Righteous, sans-serif; /* Define a fonte Righteous */
+    font-weight: bold; /* Deixa o texto em negrito */
+    font-size: 35px; /* Tamanho da fonte */
+  }
+
+  .overlay-text-montserrat {
+    font-family: Montserrat, sans-serif; /* Define a fonte Montserrat */
+    font-size: 25px; /* Tamanho da fonte */
+    padding: 50px;
+  }
+
+  .buttons {
+    margin-top: 100px; /* Espaço entre os textos e os botões */
+  }
+  
+  .saiba-mais-button,
+  .comprar-button {
+    font-family: 'Righteous', sans-serif;
+    color: white;
+    background-color: #8E5915;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 20px; /* Espaço entre os botões */
+    cursor: pointer;
+    border-radius: 7%;
+  }
+  
+  .saiba-mais-button:hover,
+  .comprar-button:hover {
+    background-color: #63420A; /* Cor do botão ao passar o mouse */
+  }
+
+  .image-menino {
+    width: 80%;
+    height: auto;
+    margin-top: 40px; /* Ajusta a posição vertical */
+    margin-left: 43%; /* Ajusta a posição horizontal */
+    
+  
+  }
+  .centered-image {
+   top: -100px;
+    position: relative;
+    width: 60%;
+  }
+  
+  .carousel-section {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(15%, 75%);
+    z-index: 1; 
+  }
+  
+  
+  .carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .slide {
+    display: none;
+    width: 70%;
+  }
+  
+  .slide.active {
+    display: block;
+  }
+  
+  .prev,
+  .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 170px; /* Ajuste conforme necessário */
+    height: 80px; /* Ajuste conforme necessário */
+    background-color:#FBBC04;
+    border-radius: 30%;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .prev {
+    right: 100%;
+
+  }
+  .prev i{
+    color: #000000;
+    font-size: 80px;
+    
+  }
+  
+  .next {
+    left: 100%;
+    
+  }
+
+  .next i{
+    color: #000000;
+    font-size: 80px;
+    
+  }
+  
+
+  
+  .prev::before {
+    transform: rotate(180deg);
+  }
+
+  .footer-section {
+    background-image: url('./img/footer-img.png'); /* Caminho para a imagem de fundo */
+    height: 100%;
+    width: 100%;
+    background-size: cover; /* Ajusta a imagem para cobrir todo o espaço */
+    color: white; /* Cor do texto */
+    text-align: center; /* Alinhamento do texto */
+  }
+  
+  .footer-content {
+    max-width: 800px; /* Largura máxima do conteúdo do rodapé */
+    margin: 0 auto; /* Centraliza o conteúdo horizontalmente */
+  }
+
+  
+  @media screen and (max-width: 768px) {
+    .carousel {
+      flex-direction: column;
+    }
+  
+    .prev,
+    .next {
+      top: auto;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  
+    .prev {
+      bottom: 10px;
+    }
+  
+    .next {
+      top: 10px;
+    }
+  
+    .prev::before,
+    .next::before {
+      width: 16px;
+      height: 16px;
+    }
+  }
