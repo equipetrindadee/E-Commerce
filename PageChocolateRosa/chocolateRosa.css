@@ -1,0 +1,208 @@
+body {
+    margin: 0;
+    font-family: "Pattaya", sans-serif;
+    background-color: #f5f5f5;
+}
+
+.container-rosa {
+    justify-content: center;
+    margin: 5rem auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px;
+}
+
+.chocolate-rosa-info {
+    width: 45%;
+}
+
+.mobile-chocolateRosa{
+    display: none;
+}
+
+.chocolate-rosa image {
+    width: 45%;
+    text-align: right;
+}
+
+.chocolate-rosa image img {
+    max-width: 100%;
+}
+
+.chocoRosa-h1 {
+    font-size: 38px;
+    margin-bottom: 10px;
+}
+
+.text-marcado {
+    color: black;
+    background-color: #EBBC8E;
+    padding: 7px;
+    font-size: 38px;
+}
+
+.preco-rosa{
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 35px;
+    margin-top: 45px;
+    font-family: "Montserrat", sans-serif;
+}
+
+/* estrelas chocolateRosa */
+.rating:not(:checked) > input {
+    position: absolute;
+    appearance: none;
+  }
+  
+  .rating:not(:checked) > label {
+    float: right;
+    cursor: pointer;
+    font-size: 30px;
+    color: #666;
+  }
+  
+  .rating:not(:checked) > label:before {
+    content: "★";
+  }
+  
+  .rating > input:checked + label:hover,
+  .rating > input:checked + label:hover ~ label,
+  .rating > input:checked ~ label:hover,
+  .rating > input:checked ~ label:hover ~ label,
+  .rating > label:hover ~ input:checked ~ label {
+    color: #e58e09;
+  }
+  
+  .rating:not(:checked) > label:hover,
+  .rating:not(:checked) > label:hover ~ label {
+    color: #ff9e0b;
+  }
+  
+  .rating > input:checked ~ label {
+    color: #ffa723;
+  }
+/* estrelas chocolateRosa*/
+  
+
+.descricao-chocoRosa{
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    font-family: "Righteous", sans-serif;
+    font-weight: 400;
+    
+}
+
+.descricao-text-chocoRosa{
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    font-family: "Montserrat", sans-serif;
+}
+
+.descricao-text-chocoRosa span {
+    margin-right: 5px;
+}
+
+.comprar-chocoRosa {
+    padding: 10px 37px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+
+.comprar-chocoRosa {
+    background-color: #FBBC04;
+    color: black;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold;
+}
+.chocolate-image img{
+    position: relative;
+width: 480px;
+right: 100px;
+}
+.compra-chocolateRosa{
+    display: flex ;
+    
+
+}
+.icone-chocolateRosa{
+    background-color: rgb(255, 255, 255) !important;
+    border: black 1px solid;
+    width: 40px !important;
+    border-radius: 30px !important;
+    margin-right: 50%;
+    
+}
+ .icone-chocolateRosa i{
+    font-size: 32px;
+ }
+.descricao-chocolateRosa{
+    display: none;
+}
+
+ @media only screen and (max-width: 768px) {
+    .container-rosa {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .chocolate-rosa-info,
+    .chocolate-image {
+        width: 100%;
+        text-align: center;
+    }
+
+    .chocolate-rosa-info {
+        margin-bottom: 50px;
+    }
+
+    .chocolate-image img {
+        width: 80%;
+        right: 0;
+    }
+}
+@media only screen and (max-width: 570px) {
+
+
+    .descricao-chocolateRosa{
+        font-family: "Pattaya", sans-serif;
+        font-size: 35px;
+        text-align: center;
+        margin-top: 40px;
+        
+    }
+
+    .chocolate-image img {
+        display: none !important;
+    }
+
+    .mobile-chocolateRosa{
+        background-color: #FBBC04;
+        width: 600px;
+        height: 200px;
+        display: block;
+        margin-top: -60px;
+    }
+
+    .mobile-chocolateRosa img {
+        width: 380px;
+        height: 300px;
+        margin-top: 50px;
+        margin-left: 120px;
+       
+       
+    }
+
+    .chocolate-rosa-info{
+        margin-top: 170px
+    }
+    
+}
+
