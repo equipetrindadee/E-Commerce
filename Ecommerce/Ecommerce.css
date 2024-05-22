@@ -93,13 +93,13 @@
   .image-menino {
     width: 80%;
     height: auto;
-    margin-top: 40px; /* Ajusta a posição vertical */
-    margin-left: 43%; /* Ajusta a posição horizontal */
+    margin-top: 10px; /* Ajusta a posição vertical */
+    margin-left: 44%; /* Ajusta a posição horizontal */
     
   
   }
   .centered-image {
-   top: -100px;
+   top: -80px;
     position: relative;
     width: 60%;
   }
@@ -108,7 +108,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(15%, 75%);
+    transform: translate(15%, 73%);
     z-index: 1; 
   }
   
@@ -130,83 +130,302 @@
   }
   
   .prev,
+.next {
+  position: fixed; /* Mudança para posição fixa */
+  bottom: 20px; /* Distância da parte inferior da página */
+  width: 70px; /* Largura dos botões */
+  height: 70px; /* Altura dos botões */
+  background-color: #FBBC04;
+  border-radius: 50%; /* Torna os botões redondos */
+  border: none;
+  cursor: pointer;
+}
+
+.prev {
+  left: 0; /* Distância da borda esquerda */
+}
+
+.next {
+  right: 0; /* Distância da borda direita */
+}
+
+.prev i,
+.next i {
+  color: #000000;
+  font-size: 40px; /* Tamanho do ícone */
+}
+
+.prev::before {
+  transform: rotate(180deg);
+}
+
+.buy-button-container {
+  text-align: center;
+  padding-top: 250px; /* Ajuste conforme necessário */
+}
+
+.buy-button {
+  background-color: #E4BA67;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 50%; /* Torna o botão redondo */
+  padding: 20px 30px; /* Ajuste conforme necessário */
+  font-size: 30px; /* Ajuste conforme necessário */
+  cursor: pointer;
+  font-family: 'Montserrat';
+  font-weight: bold;
+}
+
+
+.buy-button:hover {
+  background-color: #63420A; /* Cor do botão ao passar o mouse */
+}
+
+#footer{
+  background: #f7f7f7;
+    padding: 3rem;
+  /* padding-top: 5rem; */
+  padding-top: 7rem;
+    padding-bottom: 80px;
+  background-color: #63420A;
+  margin-top: 30px;
+}
+#footer2{
+  background: #f7f7f7;
+    padding: 3rem;
+    margin-top: 0px;
+  /* padding-top: 5rem; */
+  padding-top: 7rem;
+    padding-bottom: 80px;
+  background-color: #8E5915;
+}
+
+.social-links{
+  color: white;
+
+}
+.social-links h2{
+  padding-bottom: 15px;
+  font-size: 20px;
+    font-weight: 600;
+    color: white;
+}
+.social-links img{
+  padding-bottom: 25px;
+}
+.social-icons{
+  /* display: flex;
+    gap: 3rem; */
+  display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  color: white;
+}
+.social-icons a{
+  color: white;
+}
+.social-icons a:hover{
+  color: white;
+}
+.social-icons a i{
+  box-shadow: rgb(0 0 0 / 8%) 0px 4px 12px;
+    padding: 0.4rem 1rem 0.4rem 1rem;
+    border-radius: 3px;
+    color: #ffffff;
+  font-size: 16px;
+  margin-right: 12px;
+}
+li{
+  list-style: none;
+}
+.useful-link h2{
+  padding-bottom: 15px;
+  font-size: 20px;
+    font-weight: 600;
+    color: white;
+}
+.useful-link img{
+  padding-bottom: 15px;
+}
+.use-links{
+  line-height: 32px;
+}
+.use-links li i{
+  font-size: 14px;
+    padding-right: 8px;
+    color: white;
+}
+.use-links li a{
+  color: white;
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+}
+.use-links li a:hover{
+  color: #000;
+}
+.address h2{
+  padding-bottom: 15px;
+  font-size: 20px;
+    font-weight: 600;
+    color: white;
+}
+.address img{
+  padding-bottom: 15px;
+}
+.address-links li a{
+  color: white;
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+
+}
+.address-links li i{
+  font-size: 16px;
+    padding-right: 8px;
+  color: #82074a;
+
+}
+.address-links li i:nth-child(1){
+  padding-top: 9px;
+}
+.address-links .address1{
+  font-weight: 500;
+    font-size: 15px;
+  display: flex;
+}
+.address-links{
+      line-height: 32px;
+      color: white;
+}
+.copy-right-sec{
+  padding: 1.8rem;
+    background:#8E5915;
+    color: #fff;
+    text-align: center;
+}
+.copy-right-sec a{
+  color: #fcd462;
+    font-weight: 500;
+}
+a{
+  text-decoration:none;
+}
+
+@media screen and (max-width: 768px) {
+  .orange-container {
+    flex-direction: column-reverse; /* Inverte a direção da coluna */
+    align-items: center; /* Centraliza os itens na coluna */
+    padding: 20px 10px; /* Ajusta o preenchimento */
+  }
+
+  .image-menina {
+    width: 70%; /* Reduz a largura da imagem */
+    margin: 20px 0; /* Ajusta a margem */
+  }
+
+  .pattaya-text {
+    font-family: Pattaya;
+    color: white;
+    font-size: 40px;
+  }
+
+  .montserrat-text{
+    font-size: 15px;
+  }
+
+  .overlay-title-righteous {
+    font-family: Righteous, sans-serif; /* Define a fonte Righteous */
+    font-weight: bold; /* Deixa o texto em negrito */
+    font-size: 20px; /* Tamanho da fonte */
+    margin-top: 150px;
+  }
+
+  .overlay-text-montserrat {
+    font-family: Montserrat, sans-serif; /* Define a fonte Montserrat */
+    font-size: 17px; /* Tamanho da fonte */
+    padding: 30px;
+  }
+
+  .space-above {
+    margin-top: 20px; /* Reduz o espaçamento acima dos textos */
+    text-align: center; /* Centraliza o texto */
+    padding-left: 0; /* Remove o preenchimento à esquerda */
+  }
+
+  .overlay-content {
+    padding: 20px; /* Ajusta o preenchimento */
+  }
+
+  .buttons {
+    margin-top: 20px; /* Reduz o espaçamento entre os botões */
+    display: flex; /* Coloca os botões em uma linha */
+    flex-direction: column; /* Ajusta a direção para coluna */
+    align-items: center; /* Centraliza os botões */
+  }
+
+  .saiba-mais-button,
+  .comprar-button {
+    margin-bottom: 10px; /* Adiciona espaço entre os botões */
+  }
+
+  .centered-image {
+    width: 100%; /* Ajusta a largura da imagem */
+  }
+
+  .menino-img {
+    text-align: center; /* Centraliza o conteúdo */
+  }
+
+  .carousel-section {
+    transform: translate(-50%, -50%); /* Ajusta a posição do carousel */
+  }
+
+  .carousel {
+    flex-direction: column; /* Ajusta a direção para coluna */
+    align-items: center; /* Centraliza os itens na coluna */
+  }
+
+  .prev,
   .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 170px; /* Ajuste conforme necessário */
-    height: 80px; /* Ajuste conforme necessário */
-    background-color:#FBBC04;
-    border-radius: 30%;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .prev {
-    right: 100%;
-
-  }
-  .prev i{
-    color: #000000;
-    font-size: 80px;
-    
-  }
-  
-  .next {
-    left: 100%;
-    
+    position: static; /* Altera para posição padrão */
+    margin: 10px 0; /* Adiciona margem entre os botões */
   }
 
-  .next i{
-    color: #000000;
-    font-size: 80px;
-    
-  }
-  
-
-  
-  .prev::before {
-    transform: rotate(180deg);
+  .buy-button-container {
+    padding-top: 100px; /* Ajusta o preenchimento */
   }
 
-  .footer-section {
-    background-image: url('./img/footer-img.png'); /* Caminho para a imagem de fundo */
-    height: 100%;
-    width: 100%;
-    background-size: cover; /* Ajusta a imagem para cobrir todo o espaço */
-    color: white; /* Cor do texto */
-    text-align: center; /* Alinhamento do texto */
-  }
-  
-  .footer-content {
-    max-width: 800px; /* Largura máxima do conteúdo do rodapé */
-    margin: 0 auto; /* Centraliza o conteúdo horizontalmente */
+  #footer {
+    padding-top: 50px; /* Ajusta o preenchimento superior */
+    padding-bottom: 50px; /* Ajusta o preenchimento inferior */
   }
 
-  
-  @media screen and (max-width: 768px) {
-    .carousel {
-      flex-direction: column;
-    }
-  
-    .prev,
-    .next {
-      top: auto;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  
-    .prev {
-      bottom: 10px;
-    }
-  
-    .next {
-      top: 10px;
-    }
-  
-    .prev::before,
-    .next::before {
-      width: 16px;
-      height: 16px;
-    }
+  .logo-footer {
+    max-width: 100%; /* Garante que a imagem do logo não ultrapasse a largura do container */
+    display: none;
   }
+
+  .social-links,
+  .useful-link,
+  .address {
+    text-align: center; /* Centraliza o conteúdo */
+    margin-bottom: 20px; /* Adiciona espaço entre os elementos */
+  }
+
+  .social-icons,
+  .use-links,
+  .address-links {
+    display: flex; /* Coloca os itens em uma linha */
+    flex-direction: column; /* Ajusta a direção para coluna */
+    align-items: center; /* Centraliza os itens na coluna */
+  }
+
+  .copy-right-sec {
+    padding: 1rem; /* Ajusta o preenchimento */
+  }
+
+  .address{
+    display: none;
+  }
+}
