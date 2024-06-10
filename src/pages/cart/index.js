@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import api from "../../config/configApi";
 import "./cart.css";
 
 export const Cart = () => {
     const [cartItems, setCartItems] = useState([]);
+    const [product, setProduct] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [imageBlob, setImageBlob] = useState(null);
+    const modalRef = useRef(null);
+    // const [product, setProduct] = useState(null);
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -84,6 +89,18 @@ export const Cart = () => {
         return total.toFixed(2); // Arredonda para 2 casas decimais
     };
 
+    useEffect(() => {
+        if (modalRef.current) {
+            const modalElement = modalRef.current;
+            modalElement.addEventListener('show.bs.modal', (event) => {
+                // Lógica para quando o modal for exibido
+                console.log('Modal is shown');
+            });
+        }
+    }, []);
+
+
+
     return (
         <div>
             <header>
@@ -147,8 +164,18 @@ export const Cart = () => {
                         </div>
 
                         <i className="bi bi-cart bi-cart2"></i>
+                      
 
-                        <i className="bi bi-person-circle person-circle"></i>
+
+                        <div class="btn-group dropdown-perfil-Ecommecer">
+                            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-perfil-Ecommecer" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i className="bi bi-person-circle"></i>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li className="carrinhoCell"><a class="dropdown-item" href="#">Entrar no Carrinho</a></li>
+                                <li><a class="dropdown-item" href="#">Logout</a></li>
+                            </ul>
+                        </div>
 
                     </div>
                 </nav>
@@ -156,61 +183,55 @@ export const Cart = () => {
 
             <div className="container-fluid">
                 <div className="row">
-                    <div className="container">
+                    <div className="container-cart">
 
                         {/* parte dos cards */}
                         <div className='unidades-product'>
-
                             {/* parte link e titulo */}
                             <div className='topo-product'>
-                                <i class='bx bx-chevron-left'></i>
-                                <a href='#'>voltar</a>
+                                <a href='/rosa'> <i class='bx bx-chevron-left'></i></a>
+                                <a href='/rosa'>Voltar</a>
                                 <h1>Carrinho</h1>
                             </div>
                             {/* parte exibição dos produtos */}
-{/* 
-                            <div className='allProducts'>
-                                <div className="card-product">
-                                    <div className=" parte1-product">
-                                        {cartItems && cartItems.map((item, index) => (
-                                            <li key={index}>
-                                                <span>{item.name}</span>
-
-                                            </li>
-                                        ))}
-                                         <img src="talento1.png" alt="chocolate" />
+                            {cartItems && cartItems.map((item, index) => (
+                                <div className='allProducts'>
+                                    <div className="card-product">
+                                        <div className=" parte1-product">
+                                            <img src="../../img/talento1.png" alt="chocolate" />
+                                            {/* {product ? (
+                                        <img className="talentoMorango" src={imageBlob} alt={product.name} /> 
+                                    ) : (
+                                        <p>Carregando imagem...</p>
+                                    )} */}
                                             <div className=' textos'>
-                                                <h5>Chocolate Talento recheado Cookies e Cream 85g</h5>
-                                                <p>Codigo do Produto</p>
-                                            </div> 
-                                    </div>
-
-                                    <div className='parte2-product'>
-                                        <div className="price-product">
-
-
-                                            {cartItems && cartItems.map((item, index) => (
-                                                <li key={index}>
-
-                                                    <span>Valor Individual: ${item.price}</span>
-                                                    <span>Valor total Produto: ${item.price * item.quantity}</span>
-                                                    <span>Quantity: {item.quantity}</span>
-
-                                                </li>
-                                            ))}
+                                                <h5>{item.name}</h5>
+                                                {/* <p>{item.id}</p> */}
+                                            </div>
                                         </div>
-                                        {cartItems && cartItems.map((item, index) => (
-                                            <li key={index}>
 
-                                                <button type='button' onClick={() => removeItem(index)}>X</button>
-                                            </li>
-                                        ))}
+                                        <div className='parte2-product'>
+                                            <div className="price-product">
+                                                <h5>Valor Individual:</h5>
+                                                <p style={{ color: 'orange' }}> R$ {item.price},00</p>
+                                            </div>
+
+                                            <div className="price-product">
+                                                <h5>Quantity: </h5>
+                                                <p style={{ color: 'orange' }}> {item.quantity}     </p>
+                                            </div>
+
+                                            <div className="price-product">
+                                                <h5>Total</h5>
+                                                <p style={{ color: 'orange' }}> R$ {item.price * item.quantity},00</p>
+                                            </div>
+
+                                            <button type='button' onClick={() => removeItem(index)} className="btn btn-primary deletar-product">X</button>
+
+                                        </div>
                                     </div>
-
                                 </div>
-
-
-                            </div> */}
+                            ))}
                             <button className="btn limpar-cart" onClick={clearCart} style={{ color: 'orange' }}>Limpar Carrinho</button>
                         </div>
 
@@ -222,204 +243,151 @@ export const Cart = () => {
                                     <h2>Pagamento</h2>
                                     <div className="Total-product-pagamento">
                                         <h5>Total</h5>
-                                        <p>R$9,00</p>
+                                        <p>{calculateTotal()}</p>
                                     </div>
                                     <div className="via-product-pagamento">
                                         <h3>Aceitamos</h3>
 
                                         <div className='via-cartoes-pagamento'>
-                                            <img src="visa.png" alt='visa' />
-                                            <img src="elo.png" alt='elo' />
-                                            <img src="mastercard.png" alt='card' />
+                                            <img src="../../img/logoVisa.svg" alt='visa' />
+                                            <img src="../../img/logoElo.svg" alt='elo' />
+                                            <img src="../../img/logoMastercard.svg" alt='card' />
                                         </div>
                                     </div>
                                     {/* botão modal */}
 
-                                    {/* <button type="button" class="btn modal-finalizar"  onClick={() => setShowModal(true)} data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <button type="button" class="btn modal-finalizar" onClick={() => setShowModal(true)} data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         FINALIZAR
                                     </button>
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
 
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" ref={modalRef}>
+                                        <div className="modal-dialog modal-dialogCart">
+                                            <div className="modal-content modal-contentCart">
+                                                <div className=" modal-headerCart">
+                                                    <h1 className="modal-title  CartMTitle fs-5" id="exampleModalLabel">Finalizando</h1>
+
                                                 </div>
-                                                <div class="modal-body">
-                                                    tesddadate
+                                                <div className="modal-body modal-bodyCart">
+                                                    <form className="modal-bodyCartGrid">
+                                                        <div className="divCartM1">
+                                                            <div className="cartForms">
+                                                                <label htmlFor="name" className='labelCart'>Nome</label>
+                                                                <input
+                                                                    className='inputCart'
+                                                                    type="text" id="name" name="name" onChange={handleInputChange} value={formData.name} required />
+                                                            </div>
+                                                            <div className="cartForms">
+                                                                <label htmlFor="cep" className='labelCart'>CEP</label>
+                                                                <input
+                                                                    className='inputCart'
+                                                                    type="text" id="cep" name="cep" onChange={handleInputChange} value={formData.cep} required />
+                                                            </div>
+                                                            <div className="cartForms">
+                                                                <label htmlFor="street" className="labelCart">Rua</label>
+                                                                <input
+                                                                    className="inputCart" type="text" id="street" name="street" onChange={handleInputChange} value={formData.street} required />
+                                                            </div>
+                                                            <div className="cartForms">
+                                                                <label htmlFor="paymentMethod" className="labelCart">Forma de Pagamento</label>
+                                                                <select id="paymentMethod" name="paymentMethod" onChange={handlePaymentMethodChange} value={formData.paymentMethod} required>
+                                                                    <option value="">Selecione</option>
+                                                                    <option value="credito">Crédito</option>
+                                                                    <option value="debito">Débito</option>
+                                                                </select>
+                                                            </div>
+                                                            <div className="cartForms">
+                                                                <label htmlFor="cardNumber" className="labelCart">Número do Cartão</label>
+                                                                <input
+                                                                    className="inputCart"
+                                                                    type="text" id="cardNumber" name="cardNumber" onChange={handleInputChange} value={formData.cardNumber} required />
+                                                            </div>
+                                                        </div>
+                                                        <div className="divCartM2">
+                                                            <div className="cartForms">
+                                                                <label htmlFor="phone" className="labelCart">Telefone</label>
+                                                                <input
+                                                                    className="inputCart"
+                                                                    type="text" id="phone" name="phone" onChange={handleInputChange} value={formData.phone} required />
+                                                            </div>
+                                                            <div className='cardParentInfo'>
+                                                                <div className="mb-4 cardInfo1">
+                                                                    <label htmlFor="state" className="labelCart">Estado</label>
+                                                                    <input
+                                                                        className="inputCart"
+                                                                        type="text" id="state" name="state" onChange={handleInputChange} value={formData.state} required />
+                                                                </div>
+                                                                <div className="mb-4 cardInfo1">
+                                                                    <label htmlFor="city" className="labelCart">Cidade</label>
+                                                                    <input
+                                                                        className="inputCart"
+                                                                        type="text" id="city" name="city" onChange={handleInputChange} value={formData.city} required />
+                                                                </div>
+                                                                <div className="mb-4 cardInfo1">
+                                                                    <label htmlFor="number" className="labelCart">Número</label>
+                                                                    <input
+                                                                        className="inputCart"
+                                                                        type="text" id="number" name="number" onChange={handleInputChange} value={formData.number} required />
+                                                                </div>
+                                                            </div>
+                                                            <div className="cartForms">
+                                                                <label htmlFor="complement" className="labelCart">Complemento</label>
+                                                                <input
+                                                                    className="inputCart"
+                                                                    type="text" id="complement" name="complement" onChange={handleInputChange} value={formData.complement} />
+                                                            </div>
+                                                            <div className="cartForms">
+                                                                <label htmlFor="securityCode" className="labelCart">Código de Segurança</label>
+                                                                <input
+                                                                    className="inputCart"
+                                                                    type="text" id="securityCode" name="securityCode" onChange={handleInputChange} value={formData.securityCode} required />
+                                                            </div>
+                                                            <div className="cartForms">
+                                                                <label htmlFor="expiryDate" className="labelCart">Data de Validade do Cartão</label>
+                                                                <input
+                                                                    className="inputCart" type="text" id="expiryDate" name="expiryDate" onChange={handleInputChange} value={formData.expiryDate} required />
+                                                            </div>
+                                                        </div>
+                                                    </form>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">sair</button>
-                                                    <button type="button" class="btn btn-primary">salvar dddalterações</button>
+                                                <div className="modal-footer modal-footerCart">
+                                                    <div className="cartFooterTotal">
+                                                        <h1>Total</h1>
+                                                        <h5>{calculateTotal()}</h5>
+                                                    </div>
+                                                    <button className="modalCartFbtn" type="button" onClick={handleCheckOut}>COMPRAR</button>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> */}
+                                    </div>
 
                                     {/* fim do modal */}
                                 </div>
 
                             </div>
-                            <div class=" seu-codigo">
-                                <h4>Seu Codigo</h4>
-                                <p>teste do codigo</p>
-                            </div>
-                            <div className='menina-codigo'>
-                                <img src='menina-codigo.png' alt='menina codigo' />
-                            </div>
+                            {showThankYouMessage && (
+                                <div className='final-compra'>
+                                    <div class=" seu-codigo">
+                                        <h4>Seu Codigo</h4>
+                                        <p>Obrigado por comprar na nossa loja. Seu código de compra é: {purchaseCode}</p>
+                                    </div>
+                                    <div className='menina-codigo'>
+                                        <img src='../../img/menina-codigo.svg' alt='menina codigo' />
+                                    </div>
+
+
+                                </div>
+                            )}
                         </div>
                         {/* fim do conteiner */}
                     </div>
 
-                    <div className='pagamento-Cell'>
-                        <div class="seu-codigoCell">
-                            <h4>Seu Codigo</h4>
-                            <p>teste do codigo</p>
-                        </div>
-
-                        <img className='menina-codigoCell' src='menina-codigo.png' alt='menina codigo' />
-
-                        <div class="card card-pagemento-Cell">
-                            <div class="card-body">
-                                <h2>Pagamento</h2>
-                                <div className="Total-product-pagamento">
-                                    <h5>Total</h5>
-                                    <p>R$9,00</p>
-                                </div>
-                                <div className="via-product-pagamento">
-                                    <h3>Aceitamos</h3>
-
-                                    <div className='via-cartoes-pagamento'>
-                                        <img src="visa.png" alt='visa' />
-                                        <img src="elo.png" alt='elo' />
-                                        <img src="mastercard.png" alt='card' />
-                                    </div>
-                                </div>
-                                {/* botão modal */}
-
-                                <button type="button" class="btn modal-finalizar" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    FINALIZAR
-                                </button>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                teste
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">sair</button>
-                                                <button type="button" class="btn btn-primary">salvar alterações</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* fim do modal */}
-                            </div>
-
-                        </div>
-                    </div>
 
 
                 </div>
 
+
             </div>
 
-            <div className='cart'>
-                <h2>Shopping Cart</h2>
-                <ul>
-                    {cartItems && cartItems.map((item, index) => (
-                        <li key={index}>
-                            <span>{item.name}</span>
-                            <span>Valor Individual: ${ item.price }</span>
-                            <span>Valor total Produto: ${ item.price * item.quantity }</span>
-                            <span>Quantity: { item.quantity }</span>
-                            <button onClick={() => removeItem(index)}>X</button>
-                        </li>
-                    ))}
-                </ul>
-                <button onClick={clearCart}>Limpar Carrinho</button>
-                <button onClick={() => setShowModal(true)}>Check Out</button>
-                {showThankYouMessage    && <p>Obrigado por comprar na nossa loja. Seu código de compra é: {purchaseCode}</p>}
-            </div>
-            {showModal && (
-                <div className="modal-cart">
-                    <div className="modal-content-cart">
-                        <span className="close" onClick={() => setShowModal(false)}>&times;</span>
-                        <h2>Checkout</h2>
-                        <form className="checkout-form">
-                            <div className="form-row">
-                                <div className="form-group">
-                                    <label htmlFor="name">Nome:</label>
-                                    <input type="text" id="name" name="name" onChange={handleInputChange} value={formData.name} required />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="phone">Telefone:</label>
-                                    <input type="text" id="phone" name="phone" onChange={handleInputChange} value={formData.phone} required />
-                                </div>
-                            </div>
-                            <div className="form-row">
-                                <div className="form-group">
-                                    <label htmlFor="cep">CEP:</label>
-                                    <input type="text" id="cep" name="cep" onChange={handleInputChange} value={formData.cep} required />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="state">Estado:</label>
-                                    <input type="text" id="state" name="state" onChange={handleInputChange} value={formData.state} required />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="city">Cidade:</label>
-                                    <input type="text" id="city" name="city" onChange={handleInputChange} value={formData.city} required />
-                                </div>
-                            </div>
-                            <div className="form-row">
-                                <div className="form-group">
-                                    <label htmlFor="number">Número:</label>
-                                    <input type="text" id="number" name="number" onChange={handleInputChange} value={formData.number} required />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="street">Rua:</label>
-                                    <input type="text" id="street" name="street" onChange={handleInputChange} value={formData.street} required />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="complement">Complemento:</label>
-                                    <input type="text" id="complement" name="complement" onChange={handleInputChange} value={formData.complement} />
-                                </div>
-                            </div>
-                            <div className="form-row">
-                                <div className="form-group">
-                                    <label htmlFor="paymentMethod">Forma de Pagamento:</label>
-                                    <select id="paymentMethod" name="paymentMethod" onChange={handlePaymentMethodChange} value={formData.paymentMethod} required>
-                                        <option value="">Selecione</option>
-                                        <option value="credito">Crédito</option>
-                                        <option value="debito">Débito</option>
-                                    </select>
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="cardNumber">Número do Cartão:</label>
-                                    <input type="text" id="cardNumber" name="cardNumber" onChange={handleInputChange} value={formData.cardNumber} required />
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="securityCode">Código de Segurança:</label>
-                                    <input type="text" id="securityCode" name="securityCode" onChange={handleInputChange} value={formData.securityCode} required />
-                                </div>
-                            </div>
-                            <div className="form-row">
-                                <div className="form-group">
-                                    <label htmlFor="expiryDate">Data de Validade do Cartão:</label>
-                                    <input type="text" id="expiryDate" name="expiryDate" onChange={handleInputChange} value={formData.expiryDate} required />
-                                </div>
-                            </div>
-                            <button type="button" onClick={handleCheckOut}>Finalizar Compra</button>
-                        </form>
-                    </div>
-                </div>
-            )}
         </div>
     )
 }

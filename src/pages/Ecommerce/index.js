@@ -88,11 +88,11 @@ export const Ecommerce = () => {
             <div className="offcanvas-body body-Cart">
               <ul className="nav navChocoDoce">
                 <li className="nav-item nav-ChocoItem">
-                  <a className="nav-link nav-chocoLink nav-alpha" href="#">Home</a>
+                  <a className="nav-link nav-chocoLink nav-alpha" href="/">Home</a>
                 </li>
-                <li className="nav-item nav-ChocoItem">
+                {/* <li className="nav-item nav-ChocoItem">
                   <a className="nav-link nav-chocoLink nav-alpha" href="#">Quem Somos</a>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
@@ -105,15 +105,16 @@ export const Ecommerce = () => {
             <i className="bi bi-search"></i>
             <input type="text" className="form-control" />
           </div>
-          <i className="bi bi-cart2 carrinho"></i>
           
+        
+         <a href="/carrinho"> <i className="bi bi-cart2 carrinho"></i></a>
           <div class="btn-group">
             <button type="button" class="btn btn-secondary dropdown-toggle dropdown-perfil-Ecommecer" data-bs-toggle="dropdown" aria-expanded="false">
-            <i className="bi bi-person-circle"></i>
+              <i className="bi bi-person-circle"></i>
             </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li className="carrinhoCell"><a class="dropdown-item" href="#">Entrar no Carrinho</a></li>
-              <li><a class="dropdown-item" href="#">Logout</a></li>
+            <ul class="dropdown-menu  ">
+              <li className="carrinhoCell"><a class="dropdown-item" href="/login">Logar</a></li>
+              <li><a class="dropdown-item" href="/">Logout</a></li>
             </ul>
           </div>
         </div>
@@ -133,7 +134,7 @@ export const Ecommerce = () => {
         {/* <div className="overlay-content"> */}
         <div className="sobreEquipe">
           <h2 className="sobreEquipe-title"> Descubra Nossos Novos Sabores!</h2>
-          <p className="sobreEquipe-Conteuto">Desde combinações clássicas até criações surpreendentes, cada mordida é uma experiência única de prazer e indulgência. <br></br> Corra para a nossa loja e mergulhe nessa tentação de sabores!</p>
+          <p className="sobreEquipe-Conteudo">A equipe Alpha Develop está ansiosa para revelar os resultados de seu esforço conjunto. Eles ressaltam a contribuição de cada membro e expressam orgulho pelo progresso alcançado. Venha conferir mais detalhes sobre nossa equipe!</p>
           <div className="buttons">
             <button className="saiba-mais-button">Saiba mais</button>
           </div>
@@ -170,11 +171,11 @@ export const Ecommerce = () => {
       </section> */}
 
       <footer id="footerLoja">
-        <div className="casa">
+        <div className="conatiner-home">
           <div className="row">
             <div className="col-md-3 WIDTH logoDiv">
               <div className="logoHome">
-                <a href="index.html"><img  src="../../img/Alpha.svg"  alt="" className="img-fluid logo-footer" width={130} /></a>
+                <a href="index.html"><img src="../../img/Alpha.svg" alt="" className="img-fluid logo-footer" width={130} /></a>
                 <div className="footer-about">
                   <p> </p>
                 </div>
@@ -185,7 +186,7 @@ export const Ecommerce = () => {
                 <h2>Useful Links</h2>
                 <img src="./assets/images/about/home_line.png" alt="" className="img-fluid" />
                 <div className="use-links">
-                <li><a target="_blank" href="https://www.linkedin.com/in/jo%C3%A3o-kleber-de-moraes-dias-9671162b9/"><i class="bi bi-linkedin"></i>João Kleber</a></li>
+                  <li><a target="_blank" href="https://www.linkedin.com/in/jo%C3%A3o-kleber-de-moraes-dias-9671162b9/"><i class="bi bi-linkedin"></i>João Kleber</a></li>
                   <li><a target="_blank" href="https://www.linkedin.com/in/matheus-parizoti-de-ara%C3%BAjo-6101172b9/"><i class="bi bi-linkedin"></i>Matheus Parizoti</a></li>
                   <li><a target="_blank" href="https://www.linkedin.com/in/marcelo-vinicius-jord%C3%A3o-almeida-186604248/"><i class="bi bi-linkedin"></i>Marcelo Vinicius</a></li>
                   <li><a target="_blank" href="https://www.linkedin.com/in/miri%C3%A3-de-oliveira-fernandes-48b1162b9/"><i class="bi bi-linkedin"></i>Miriã Oliveira</a></li>
@@ -208,9 +209,9 @@ export const Ecommerce = () => {
             <div className="col-md-3 localHome">
               <div className="address">
                 <h2>Follow more projects</h2>
-                <img src="./assets/images/about/home_line.png" alt=""  className="img-fluid"/>
+                <img src="./assets/images/about/home_line.png" alt="" className="img-fluid" />
                 <div className="social-icons">
-                <li><a href=""><i class="bi bi-facebook"></i> Facebook</a></li>
+                  <li><a href=""><i class="bi bi-facebook"></i> Facebook</a></li>
                   <li><a href=""><i class="bi bi-instagram"></i> Instagram</a></li>
                   <li><a href=""><i class="bi bi-linkedin"></i> Linkedin</a></li>
                 </div>
@@ -218,20 +219,20 @@ export const Ecommerce = () => {
             </div>
           </div>
         </div>
-        </footer>
-        <section id="copy-right">
-          <div className="copy-right-sec">
-            <div className="itemsCopy">
-              <i class="bi bi-c-circle"></i>
-              <p>2021 Chobani, LCC, All Rights Reserved</p>
-              <a href="#"> Privacy Policy</a>
-
-            </div>
+      </footer>
+      <section id="copy-right">
+        <div className="copy-right-sec">
+          <div className="itemsCopy">
+            <i class="bi bi-c-circle"></i>
+            <p>2021 Chobani, LCC, All Rights Reserved</p>
+            <a href="#"> Privacy Policy</a>
 
           </div>
 
-        </section>
-        
+        </div>
+
+      </section>
+
     </div>
   );
 };
